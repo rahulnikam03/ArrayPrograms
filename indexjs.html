@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <initial-scale=1.0">
+    <link rel="stylesheet" href="sty.css">
+<script
+src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/operations.js" ></script>
+<title>Document</title>
+</head>
+<body>
+    <div class="Box">
+        <div id="heading">
+            <h2>Employee registartion Form</h2>
+        </div>
+        <div class="abc">
+        <div id="form data">
+            <table>
+            <tr>
+                    <td>
+            <lable for="name">Enter name</lable>
+            <input type="text" id="name" placeholder="enter your choice"/>
+                    </td>
+            </tr>
+            <tr>
+                <td>
+            <lable for="date">Select birthday</lable>
+            <input type="date" id="date" placeholder="select birthday"/>
+                    </td>
+            </tr>
+            <tr>
+                <td>
+            <lable for="email">Enter your email</lable>
+            <input type="email" id="email" placeholder="enter your email"/>
+               </td>
+            </tr>
+            <tr>
+                <td>
+            <lable for="mobile">Enter your mo number</lable>
+            <input type="text" id="mobile" placeholder="enter your mobile nuber"/>
+             </td>
+              </tr>
+        </table>
+            <table>
+                <tr>
+                    <td>
+                    <button id="btn_add" onclick="addRowtotable()">
+                    <i class=" fa-solid fa-cloud-arrow-up"></i>Save Data
+                    </button>
+
+                    <button id="btn-edit">
+                        <i class="fa-solid fa-pencil"></i>Edit
+                    </button>
+
+                    <button id="btn-delete">
+                        <i class="fa-solid fa-trash"></i>btn-delete
+                    </button>
+                </td>
+                </tr>
+            </table>
+        </div>
+            <div class="upload_img">
+                <p id="photo">
+                    <img src="" >
+                </p>
+                <form>
+                <input type="file" accept="image/*" id="upload_img"/>
+            </form>
+            </div>
+        </div>
+
+
+        <div class="arr">
+        <div class=" serch_div">
+            <form>
+                <label for="search">Enetr search keyword</label>
+                <input type="texxt" id="search" placeholder="serach for"/>
+            </form>
+        </div>
+    </div>
+        <div id=" form_table">
+            <table id="table">
+                <tr>
+                    <th>FullName</th>
+                    <th>BirthDates</th>
+                    <Th>Email</Th>
+                    <Th>Mobile</Th>
+                    <th>Profile Pic</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        var mobile=document.getElementById('mobile');
+        mob.addEventListener('keypress',function(e)
+        {
+            var ch=String.fromCharCode(e.whitch)
+            if(!(/[0-9]/.test(ch)))
+            {
+                e.preventDefult();
+                alert("only nuumbers and 10 digit allowed")
+            }
+        });
+        loadimage();
+      function checkemptyfields()
+      {
+        var fname=document.getElementById("name").value;
+        var birth=document.getElementById("birth").value;
+        var email=document.getElementById("email").value;
+        var mob=document.getElementById("mobile").value;
+        var picinput=document.getElementById("image-upload");
+        var pic=picinput.files[0];
+
+        if(fname =="")
+        {
+            alert('please select fullname');
+            document.getElementById("name").focus();
+            return true;
+        }
+
+        if(birth =="")
+        {
+            alert('please select birthday');
+            document.getElementById("nirth").focus();
+            return true;
+        }
+
+        if(email =="")
+        {
+            alert('please select email');
+            document.getElementById("email").focus();
+            return true;
+        }
+
+        if(!pic)
+        {
+            alert('please select image file');
+            return true;
+        }
+        else if(!pic)
+        {
+            return true;
+        }
+        return false;
+      }
+      function loadimages()
+      {
+        document.getElementById("image-uploaded")
+        .addEventListener("change",function (e)
+        {
+            const file =e.target.files[0];
+
+            if(file)
+            {
+                const reader=new FileReader();
+                reader.onload=function(e)
+                {
+                    const imageurl=e.target.result;
+                    const imagepreview=document.getElementById("photo");
+                    imagepreview.innerHTML='<img src="${imageurl}"alt="imagepreview">'
+                    imagepreview.style.width="80%";
+                    imagepreview.style.height="100%";
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+      function validateImageUpload(){
+         var imgupload = document.getElementById("image-upload");
+          var validExt = ["jpeg","png","jpg"];
+          if(imgupload.value != "")
+         {
+           var imgExt =
+             imgupload.value.substring(imgupload.value.lastIndexOf('.')+1);
+             var result = validExt.includes(imgExt);
+           if(result == false)
+           {
+             alert('Selected file is not an image');
+              return false;
+              }
+               else
+               {
+              if(parseFloat(imgupload.files[0].size/(1024*1024))>=2)
+                 {
+                  alert('image size must be less then 2MB, The current size of'
+                   images='+imgupload.files[0].size/(1024 * 1024 )');
+                    return false;
+                      }
+                  }
+                }
+                 else
+                  {
+                 alert('No image is selected..');
+                 return false;
+                   }
+                   return true;
+                         }
+
+                         function addRowtotable()
+                         {
+                            var table=document.getElementById(table);
+                            if(!checjemptyfeild)
+                            {
+                                var addNewRow =table.insertRow(table.rows.length)
+                                cell1=addNewRow.insertRow.insertcell(0);
+                                cell2=addNewRow.insertRow.insertcell(1);
+                                cell3=addNewRow.insertRow.insertcell(2);
+                                cell4=addNewRow.insertRow.insertcell(3);
+                                cell5=addNewRow.insertRow.insertcell(4);
+                            }
+                                fname =document.getElementById('name').value,
+                                birth =document.getElementById('birth').value,
+                                email =document.getElementById('email').value,
+                                mob =document.getElementById('mobile').value,
+                            
+                                picinput=document.getElementById('image-upload');
+                                picinpur.files[0];
+                        }
+               </script>
+    
+           </body>
+
+</html>
